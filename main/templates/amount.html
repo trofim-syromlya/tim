@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Тренажёр{% endblock %}
+{% block content %}
+<h2>{{ user.username }}, выполните вычисление:</h2>
+<p style="font-size: 70px;">Сложите два числа: {{ num1 }} + {{ num2 }} = ...</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="number" name="answer" required style="font-size: 30px; text-align: center;">
+    <button type="submit" {% if answered %}disabled{% endif %}>Проверить</button>
+</form>
+{% if result %}
+    <p style="color: red;">{{ result }}</p>
+{% endif %}
+<a href="{% url 'next_task' %}">Следующее задание</a>
+{% endblock %}

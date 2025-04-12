@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Привет, {{ user.username }}!<br><br>Добро пожаловать в тренажёр сложения двух чисел<br><br><span style='color: green'>(предназначен для младших классов).</h1>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">ВЫЙТИ</button>
+    </form>
+{% else %}
+    <h1>Привет, Ворлд!</h1>
+    <p>Для продолжения работы Вам необходимо авторизоваться.</p>
+    <form action="{% url 'login' %}" method="get">
+        <button type="submit">Авторизоваться</button>
+    </form>
+{% endif %}
+{% endblock %}

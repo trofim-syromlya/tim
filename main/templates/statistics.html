@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Статистика{% endblock %}
+{% block content %}
+<h2>Статистика:</h2>
+<p>Правильные ответы пользователя {{ user.username }}: <span style='color: red'>{{ user_stats.correct_answers }} ({{ user_stats.correct_percentage|floatformat:0 }}%)</p>
+<p>Неправильные ответы пользователя {{ user.username }}: <span style='color: red'>{{ user_stats.incorrect_answers }} ({{ user_stats.incorrect_percentage|floatformat:0 }}%)</p><br><br>
+<p>Зарегистрировано пользователей: <span style='color: red'>{{ total_users }}</p>
+<p>Количество правильных ответов (всех пользователей): <span style='color: red'>{{ correct_answers }} ({{ correct_percentage|floatformat:0 }}%)</p>
+<p>Количество неправильных ответов (всех пользователей): <span style='color: red'>{{ incorrect_answers }} ({{ incorrect_percentage|floatformat:0 }}%)</p>
+{% endblock %}

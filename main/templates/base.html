@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Тренажёр сложения{% endblock %}</title>
+    <style>
+        body {
+            background-image: url('/static/cell.png');
+            background-repeat: repeat;
+            background-size: 20px 20px;
+            color: blue;
+            font-family: Arial, sans-serif;
+        }
+        @font-face {
+            font-family: 'Adventure';
+            src: url('/path/to/Adventure.ttf') format('truetype');
+        }
+        #menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 210px;
+            height: 100vh;
+            background-color: rgba(245, 245, 245, 0.5);
+            padding: 10px;
+            border-right: 3px solid red;
+            overflow-y: auto;
+        }
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #menu a {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        #menu a.active {
+            background-color: rgba(255, 0, 0, 0.4);
+            border: 2px solid red;
+            border-radius: 10px;
+        }
+        .container {
+            margin-left: 279px;
+            padding-right: 50px;
+        }
+        h1 {
+            font-size: 50px;
+            text-align: center;
+            font-family: 'Adventure', sans-serif;
+        }
+        h2 {
+            font-size: 50px;
+            font-family: 'Adventure', sans-serif;
+        }
+        p {
+            font-family: 'Adventure', sans-serif;
+            font-size: 40px;
+        }
+        .message {
+            font-size: 50px;
+            font-family: 'Adventure';
+        }
+        button {
+            font-size: 30px;
+        }
+        form {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="menu">
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <ul>
+            {% url 'index' as index_url %}
+            <li><a href="{{ index_url }}" class="{% if request.path == index_url %}active{% endif %}">Приветствие</a></li>
+
+            {% url 'amount' as amount_url %}
+            <li><a href="{{ amount_url }}" class="{% if request.path == amount_url %}active{% endif %}">Тренажёр</a></li>
+
+            {% url 'statistics' as statistics_url %}
+            <li><a href="{{ statistics_url }}" class="{% if request.path == statistics_url %}active{% endif %}">Статистика</a></li>
+
+            {% url 'about' as about_url %}
+            <li><a href="{{ about_url }}" class="{% if request.path == about_url %}active{% endif %}">О программе</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
