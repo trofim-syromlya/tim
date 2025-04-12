@@ -2,8 +2,7 @@
 
 ### Клонировать репозиторий в PyCharm
 
-### Команды в терминале PyCharm
-cd tim
+### Команды в терминале PyCharm:
 
 ### Установка необходимых библиотек
 pip install -r requirements.txt
@@ -13,7 +12,9 @@ pylint tim
 
 ### Замена имеющейся в репозитории БД с данными на новую БД без данных
 del db.sqlite3
+
 python manage.py makemigrations
+
 python manage.py migrate
 
 ### Запуск веб-приложения
